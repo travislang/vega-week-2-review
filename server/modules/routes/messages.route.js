@@ -1,15 +1,15 @@
 const express = require( 'express' );
 const router = express.Router( );
 
-let messages = [];
+const messagesModule = require( '../messages.module.js' );
 
 router.get( '/', function( req, res ){
     console.log( `GET Hit`);
-    res.send( messages );
+    res.send( messagesModule.messages );
 })// end GET
 
 router.post( '/', ( req, res ) => {
-    console.log( `POST Hit: ${ req.body }`);
+    console.log( 'POST Hit:', req.body );
     res.send( 'ka-kah' );
 })// end POST
 

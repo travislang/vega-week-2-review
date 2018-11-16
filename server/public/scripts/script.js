@@ -20,14 +20,14 @@ class Message{
 function sendMessage( ){
     console.log('in sendMessages function');
     // get user input
-    if( $('#usernameIn' ).val( ) === '' || $( '#messageIn' ).val( ) === '' ){
+    if( $('#usernameIn' ).val( ) === '' || $( '#newMessageIn' ).val( ) === '' ){
         alert( 'no empties allowed' );
     }// end has empties
     else{ 
     // if no empties
     // create a message
-        const messageToSend = new Message( $( '#usernameIn' ).val( ), $( '#messageIn' ).val( ) );
-        console.log( `sending: ${messageToSend}`)
+        const messageToSend = new Message( $( '#usernameIn' ).val( ), $( '#newMessageIn' ).val( ) );
+        console.log( 'sending:', messageToSend)
     // send message to server via POST
     $.ajax({
         method: 'POST',
@@ -49,7 +49,7 @@ function getMessages( ){
         method: 'GET',
         url: '/messages'
     }).then( function( res ){
-        console.log( `back from GET with: ${res}`);
+        console.log( 'back from GET with:', res );
         // loop through response
         // display each message in #messagesOut ul el
     })
