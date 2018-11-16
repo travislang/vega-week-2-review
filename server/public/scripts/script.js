@@ -4,6 +4,7 @@ function readyNow( ){
     console.log( 'jquery is loaded' );
     $( '#submitMessage' ).on( 'click', sendMessage );
     $( '#refreshButton' ).on( 'click', getMessages );
+    getMessages( );
     
 
 
@@ -19,16 +20,24 @@ class Message{
 function sendMessage( ){
     console.log('in sendMessages function');
     // get user input
-    if( $('#usernameIn' ).val( ) === '' || $( '#message' ).val( ) === '' ){
+    if( $('#usernameIn' ).val( ) === '' || $( '#messageIn' ).val( ) === '' ){
         alert( 'no empties allowed' );
     }// end has empties
     else{ 
     // if no empties
     // create a message
-        const messageToSend = new Message( $( '#usernameIn' ).val( ), $( '#message' ).val( ) );
+        const messageToSend = new Message( $( '#usernameIn' ).val( ), $( '#messageIn' ).val( ) );
         console.log( `sending: ${messageToSend}`)
     // send message to server via POST
-    // update messages on DOM
+    $.ajax({
+        method: 'POST',
+        url: '/messages',
+        data: messageToSend
+    }).then( function( res ){
+        console.log( `back from POST with: ${res}`);
+        // update messages on DOM
+    })
+    
     getMessages( );
     }// end no empties
 }// end sendMessage
@@ -36,7 +45,14 @@ function sendMessage( ){
 function getMessages( ){
     console.log('in getMessages fn');
     // make an ajax req
-    // loop through response
-    // display each message in #messagesOut ul el
+    $.ajax({
+        method: 'GET',
+        url: '/messages'
+    }).then( function( res ){
+        console.log( `back from GET with: ${res}`);
+        // loop through response
+        // display each message in #messagesOut ul el
+    })
+    
 }// end getMessages
 
