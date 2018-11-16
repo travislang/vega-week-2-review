@@ -1,7 +1,9 @@
 let messages = [];
 
 function addMessage( newMessage ){
-    console.log( 'in addMessage' );
+    console.log( 'in addMessage',  newMessage );
+    messages.push( newMessage );
+    return true;
 }// end addMessage
 
 

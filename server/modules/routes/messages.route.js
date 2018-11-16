@@ -10,7 +10,7 @@ router.get( '/', function( req, res ){
 
 router.post( '/', ( req, res ) => {
     console.log( 'POST Hit:', req.body );
-    res.send( 'ka-kah' );
+    res.send( messagesModule.addMessage( req.body ) );
 })// end POST
 
 
