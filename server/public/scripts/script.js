@@ -4,6 +4,7 @@ function readyNow( ){
     console.log( 'jquery is loaded' );
     $( '#submitMessage' ).on( 'click', sendMessage );
     $( '#refreshButton' ).on( 'click', getMessages );
+    $( '#messagesOut' ).on( 'click', '.senderClick', getSender );
     getMessages( );
     
 
@@ -57,10 +58,11 @@ function getMessages( ){
         // loop through response
         for( let message of res ){
             // display each message in #messagesOut ul el
-            el.append( `<li>${message.text}<strong>${message.sender}</strong></li>`)
+            el.append( `<li>${message.text}  <strong><span class="senderClick">${message.sender}</span></strong></li>`)
         }
-        
     })
-    
 }// end getMessages
 
+function getSender( ){
+    console.log( 'in getSender', $( this ).text( ) );
+}// end getSender
